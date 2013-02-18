@@ -1,0 +1,10 @@
+INDEX VERSION 1.126+C:\workspaces\codeiq_curry\.metadata\.plugins\org.eclipse.jdt.core
+1807780783.index
+477300310.index
+4061171857.index
+1109852325.index
+122353116.index
+3061660807.index
+727210702.index
+1064532540.index
+256719318.index

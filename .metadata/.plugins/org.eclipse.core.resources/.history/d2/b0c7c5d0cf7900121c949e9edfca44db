@@ -1,0 +1,19 @@
+/**
+ *
+ */
+package core;
+
+/**
+ * @author tanabe
+ *
+ */
+public class SpiceCollection {
+
+	private ArrayList<Spice> spices;
+
+
+	public SpiceCollection() {
+		this.spices = new ArrayList<Spice>();
+	}
+
+}

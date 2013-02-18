@@ -1,0 +1,36 @@
+/**
+ *
+ */
+package data;
+
+/**
+ * ブレンドを表すクラスです。
+ * @author tanabe
+ *
+ */
+public class Blend {
+
+	/**
+	 * スパイス1
+	 */
+	private Spice spice1;
+
+	/**
+	 * スパイス2
+	 */
+	private Spice spice2;
+
+	/**
+	 * 二つのスパイスからなるブレンドを生成します。
+	 * @param sp1 スパイス1
+	 * @param sp2 スパイス2
+	 * @throws NullPointerException 引数が{@code null}
+	 */
+	public Blend( Spice sp1, Spice sp2 ) {
+		if( sp1 == null || sp2 == null ) {
+			throw new NullPointerException();
+		}
+
+		if( sp1.getType().compareTo( sp2 ))
+	}
+}

@@ -1,0 +1,61 @@
+/**
+ *
+ */
+package data;
+
+/**
+ * スパイスを表すクラスです。
+ * @author tanabe
+ *
+ */
+public class Spice {
+
+	/**
+	 * スパイスの種類です。
+	 */
+	private String type;
+
+	/**
+	 * 指定種類のスパイスを生成します。
+	 * @param type 種類
+	 */
+	public Spice( String type )
+	{
+		if( type == null )
+		{
+			throw new NullPointerException();
+		}
+
+		this.type = type;
+	}
+
+	/* (非 Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return this.type.hashCode();
+	}
+
+	/* (非 Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Spice other = (Spice) obj;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		return true;
+	}
+
+
+}

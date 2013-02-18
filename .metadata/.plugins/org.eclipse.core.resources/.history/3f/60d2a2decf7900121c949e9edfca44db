@@ -1,0 +1,23 @@
+/**
+ *
+ */
+package core;
+
+import java.util.ArrayList;
+
+import data.Spice;
+
+/**
+ * @author tanabe
+ *
+ */
+public class SpiceCollection {
+
+	private ArrayList<Spice> spices;
+
+
+	public SpiceCollection() {
+		this.spices = new ArrayList<Spice>();
+	}
+
+}
