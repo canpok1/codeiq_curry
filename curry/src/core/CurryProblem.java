@@ -3,8 +3,15 @@
  */
 package core;
 
-import data.Blend;
-import data.Spice;
+import java.io.File;
+import java.util.HashSet;
+
+import buffer.PointBuffer;
+
+import output.ConsolePrinter;
+import output.FilePrinter;
+import output.Printer;
+import data.CurryPair;
 
 /**
  * @author tanabe
@@ -12,39 +19,59 @@ import data.Spice;
  */
 public class CurryProblem {
 
-	/**
-	 * ブレンドファイルへのパス
-	 */
-	private static final String BLENDLIST_PATH = "C:\\Users\\tanabe\\Documents\\CodeIQ\\curry\\blendlist.txt";
+    /**
+     * ブレンドファイルへのパス
+     */
+    private static final String BLENDLIST_PATH = "C:\\Users\\tanabe\\Documents\\CodeIQ\\curry\\blendlist.txt";
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		System.out.println("program start");
+    /**
+     * サンプルブレンドファイルへのパス
+     */
+    private static final String SAMPLE_BLENDLIST_PATH
+            = "C:\\Users\\tanabe\\Documents\\CodeIQ\\curry\\sample_blendlist.txt";
 
-		System.out.println( "blendlist path => " + BLENDLIST_PATH );
-		try {
-			BlendlistImporter importer = new BlendlistImporter( BLENDLIST_PATH );
+    /**
+     * 情報の出力先
+     */
+    private static final Printer PRINTER = new ConsolePrinter();
 
-			// スパイスを表示
-			for( Spice spice : importer.getSpiceList() ) {
-				System.out.println( spice );
-			}
+    /**
+     * 答えの出力先パス
+     */
+    private static final String ANSWER_FILE
+            = "C:\\Users\\tanabe\\Documents\\CodeIQ\\curry\\MyAnswer.txt";
 
-			System.out.println();
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        PRINTER.println( "program start" );
 
-			// ブレンドを表示
-			for( Blend blend : importer.getBlendList() ) {
-				System.out.println( blend );
-			}
-		}
-		catch( Exception e ) {
-			System.out.println( "読み込み失敗" );
-			e.printStackTrace();
-		}
+        String path = BLENDLIST_PATH;
+//        String path = SAMPLE_BLENDLIST_PATH;
 
-		System.out.println("program end");
-	}
+        File file = new File(ANSWER_FILE );
+        FilePrinter filePrinter = new FilePrinter( file );
+
+        PRINTER.println( "blendlist path => " + path );
+        try {
+            Solver             solver = new Solver( path, PRINTER );
+            HashSet<CurryPair> answer = new HashSet<CurryPair>( solver.solve() );
+            PointBuffer        buffer = solver.getBuffer();
+
+            for( CurryPair pair : answer ) {
+                int p1 = buffer.getPoint( pair.getCurry1() );
+                int p2 = buffer.getPoint( pair.getCurry2() );
+
+                filePrinter.println( (p1 > p2) ? pair.getCurry1() : pair.getCurry2() );
+            }
+        }
+        catch( Exception e ) {
+            PRINTER.println( "読み込み失敗" );
+            e.printStackTrace();
+        }
+
+        PRINTER.println("program end");
+    }
 
 }
